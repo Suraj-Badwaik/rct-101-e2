@@ -1,11 +1,11 @@
 import React from "react";
 import Products from "./components/Products"
-import "./App.css"
+import styles from "./components/App.css"
 
 
 const App = () => {
   return (
-    <div className="App">
+    <div className={styles.App}>
       <Products />
     </div>
   );

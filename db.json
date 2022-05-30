@@ -70,53 +70,6 @@
       "price": "300",
       "imageSrc": "https://picsum.photos/seed/picsum2/421/261",
       "id": 9
-    },
-    {
-      "value": {
-        "title": "",
-        "category": "",
-        "gender": "",
-        "price": ""
-      },
-      "id": 10
-    },
-    {
-      "value": "5",
-      "id": 11
-    },
-    {
-      "id": 12
-    },
-    {
-      "id": 13
-    },
-    {
-      "value": {
-        "title": "fcghfg",
-        "category": "",
-        "gender": "",
-        "price": "34565",
-        "selectedCategory": "Shirt"
-      },
-      "id": 14
-    },
-    {
-      "value": {
-        "title": "4675",
-        "category": "",
-        "gender": "",
-        "price": "1200",
-        "selectedCategory": "Pant"
-      },
-      "id": 15
-    },
-    {
-      "value": {
-        "title": "esdghrt",
-        "price": "",
-        "selectedCategory": "Shirt"
-      },
-      "id": 16
     }
   ]
 }

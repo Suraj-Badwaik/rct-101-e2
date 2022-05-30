@@ -1,5 +1,6 @@
 import React from "react";
-import { useState, useEffect, axios } from "react";
+import { useState, useEffect} from "react";
+import axios from "axios"
 import {
   Button,
   Modal,
@@ -13,23 +14,16 @@ import {
 import { useDisclosure } from "@chakra-ui/react";
 
 const AddProduct = () => {
-  const [page, setPage] = useState(1);
-  const [totalCount, setTotalCount] = useState(0);
-  const [limit, setLimit] = useState(3);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [New, setNew] = useState({});
+  const [NewProd, setNewProd] = useState([]);
+  const [form, setForm] = useState({});
+  const [value, setValue] = useState('');
 
-  const [List, setList] = useState([]);
+  const onChange = (e) => {
+    let { name, value } = e.target;
+    setForm({ ...form, [name]: value });
+  };
 
-  useEffect(() => {
-    const getList = async () => {
-      let r = await axios.get(`http://localhost:8080/products?_page=${page}&_limit=${limit}`);
-      console.log(r.data);
-      setList(r.data);
-      setTotalCount(Number(r.headers["x-total-count"]));
-    };
-    getList();
-  }, [page,limit]);
 
   const saveInfo = () => {
     fetch("http://localhost:8080/products", {
@@ -38,30 +32,33 @@ const AddProduct = () => {
         "content-type": "application/json",
       },
       body: JSON.stringify({
-        value: New,
+        title:form.title,
+        category:form.category,
+        imageSrc: "",
+        price:form.price
       }),
     })
       .then((r) => r.json())
       .then((d) => {
-        setList([...List, d]);
-        setNew({ title: "", category: "", gender: "", price: "" });
+        setNewProd([...NewProd, d]);
+        setForm("");
       });
   };
 
-  const onChange = (e) => {
-    let { name, value } = e.target;
-
-    
-      setNew({ ...New, [name]: value });
-    
-  };
 
 
-
+  useEffect(() => {
+    const getList = async () => {
+      let r = await axios.get(`http://localhost:8080/products`);
+      console.log(r.data);
+      setNewProd(r.data);
+    };
+    getList();
+  }, []);
 
   return (
     <>
-      <Button my={4} data-cy="add-product-button" onClick={onOpen} width="10%" margin="auto">
+      <Button my={4} data-cy="add-product-button" onClick={onOpen}>
         Add new Product
       </Button >
       <Modal isOpen={isOpen} onClose={onClose} >
@@ -71,25 +68,25 @@ const AddProduct = () => {
             data-cy="add-product-title"
             type='text'
             name="title"
-            value={New.title}
+            value={form.title}
             onChange={onChange}
           />
           <label htmlFor="">Category</label>
           <Select
             data-cy="add-product-category"
-            name="selectedCategory"
-            value={New.selectedCategory}
+            name="category"
+            value={form.category}
             onChange={onChange}
           >
             <option data-cy="">category</option>
-            <option data-cy="add-product-category-shirt">Shirt</option>
-            <option data-cy="add-product-category-pant">Pant</option>
-            <option data-cy="add-product-category-jeans">Jeans</option>
+            <option value="Shirt" data-cy="add-product-category-shirt">Shirt</option>
+            <option value="Pant" data-cy="add-product-category-pant">Pant</option>
+            <option value="Jeans" data-cy="add-product-category-jeans">Jeans</option>
           </Select>
           <label htmlFor="">Gender</label>
           <RadioGroup
             data-cy="add-product-gender"
-            onChange={onChange}
+            onChange={setValue} value={value}
           >
             <Radio data-cy="add-product-gender-male">Male</Radio>
             <Radio data-cy="add-product-gender-female">Female</Radio>
@@ -100,7 +97,7 @@ const AddProduct = () => {
             data-cy="add-product-price"
             type="text"
             name="price"
-            value={New.price}
+            value={form.price}
             onChange={onChange}
           />
           <Button data-cy="add-product-submit-button" onClick={saveInfo}>

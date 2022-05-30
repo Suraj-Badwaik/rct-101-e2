@@ -1,10 +1,8 @@
 import React from "react";
 import {Button,ButtonGroup,Select} from "@chakra-ui/react"
-import { useState, useEffect,axios } from "react";
 
-const Pagination = () => {
-  const [page, setPage] = useState(1)
-  const [limit, setLimit] = useState(3)
+const Pagination = ({page, limit, setPage ,setLimit,totalcount}) => {
+ 
 
   return (
     <ButtonGroup>
