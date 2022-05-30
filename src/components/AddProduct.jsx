@@ -10,6 +10,8 @@ import {
   RadioGroup,
   Radio,
   ModalFooter,
+  ModalOverlay,
+  ModalContent
 } from "@chakra-ui/react";
 import { useDisclosure } from "@chakra-ui/react";
 
@@ -56,12 +58,20 @@ const AddProduct = () => {
     getList();
   }, []);
 
+  const btnStyle = {
+      boxSizing:"border-box",
+      margin:"auto",
+      marginBottom:"30px"
+  }
+
   return (
     <>
-      <Button my={4} data-cy="add-product-button" onClick={onOpen}>
+      <Button my={4} data-cy="add-product-button" onClick={onOpen}  w="13%" style={btnStyle} >
         Add new Product
       </Button >
       <Modal isOpen={isOpen} onClose={onClose} >
+      <ModalOverlay />
+      <ModalContent>
         <ModalBody pb={6}>
           <label htmlFor="">Title</label>
           <Input
@@ -110,6 +120,7 @@ const AddProduct = () => {
             Close
           </Button>
         </ModalFooter>
+        </ModalContent>
       </Modal>
     </>
   );

@@ -1,4 +1,10 @@
-.App{
-    border: 1px solid gray;
-    border-radius: 10px;
+
+.css-k008qs{
+    display: flex;
+    flex-direction: column;
+}
+
+.css-1qsau05{
+    width: 10%;
+    margin: auto;
 }

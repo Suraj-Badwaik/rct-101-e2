@@ -70,6 +70,13 @@
       "price": "300",
       "imageSrc": "https://picsum.photos/seed/picsum2/421/261",
       "id": 9
+    },
+    {
+      "title": "New shirt",
+      "category": "Jeans",
+      "imageSrc": "",
+      "price": "300",
+      "id": 10
     }
   ]
 }

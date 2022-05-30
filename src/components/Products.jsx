@@ -23,11 +23,13 @@ const Products = () => {
   }, [page,limit]);
 
 
- 
+
   return (
     <Flex>
       <AddProduct  />
-      <Grid ><Product List={List}/></Grid>
+      <Grid templateColumns='repeat(3, 1fr)' gap={6}  margin="auto">
+        <Product List={List}/>
+      </Grid>
       <Pagination page={page} limit={limit} setPage={setPage}  setLimit={setLimit} totalcount={totalcount} />
     </Flex>
   );
