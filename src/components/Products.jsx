@@ -1,15 +1,18 @@
-import React from "react";
+import React ,{useEffect}from "react";
+import AddProduct from "./AddProduct";
+import Pagination from "./Pagination";
+import Product from "./Product";
+import { Flex,Grid } from "@chakra-ui/react";
 
 const Products = () => {
-  // TODO: Remove below const and instead import them from chakra
-  const Flex = () => <div />;
-  const Grid = () => <div />;
 
+
+ 
   return (
-    <Flex>
-      {/*  AddProduct */}
-      <Grid>{/* List of Products */}</Grid>
-      {/* Pagination */}
+    <Flex flexDirection="column">
+      <AddProduct  />
+      <Grid display="grid" gridTemplateColumns="20% 1fr"><Product/></Grid>
+      <Pagination />
     </Flex>
   );
 };
